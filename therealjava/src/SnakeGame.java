@@ -21,6 +21,7 @@ public class SnakeGame {
 
         int Size = board.length;
         Snake = new boolean[Size][Size];
+
         Snake = board;
     }
 
@@ -36,12 +37,17 @@ public class SnakeGame {
 
     private int[] getHeadPosition() { return HeadPosition; }
 
-    private int getExhaustiveChecks() { return ExhaustiveChecks; }
+    public static int getExhaustiveChecks() { return ExhaustiveChecks; }
 
-    private int getRecursiveChecks() { return RecursiveChecks; }
+    public static int getRecursiveChecks() { return RecursiveChecks; }
+
+    private void resetCounters(){
+        ExhaustiveChecks = 0;
+        RecursiveChecks = 0;
+    }
 
     public int[] findTailExhaustive(){
-        ExhaustiveChecks = 0;
+        resetCounters();
         int[] tail = new int[3];
         int count = 0;
         int length = 0;
@@ -131,5 +137,90 @@ public class SnakeGame {
         }
         tail[2] = length;
         return tail;
+    }
+    public int[] findTailRecursive(){
+        resetCounters();
+        return findTailRecursive(HeadPosition,HeadPosition);
+    }
+    private int[] findTailRecursive(int[] currentPosition, int[] previousPosition){
+        int[] tail = new int[3];
+        int length = 0;
+        int i = currentPosition[0];
+        int j = currentPosition[1];
+        if(i==0 && j ==0){
+            RecursiveChecks++;
+
+
+                if(Snake[i][j+1] == true && previousPosition[0] != i && previousPosition[1] != j+1){ tail[0]=i;tail[1]=j;}
+                if(previousPosition[0] != i+1 && previousPosition[1] != j && Snake[i+1][j] == true ){ tail[0]=i;tail[1]=j;}
+
+        }
+        if(i==0 && j!= 0 && j!= Snake.length){
+            RecursiveChecks++;
+            RecursiveChecks++;
+
+                if(previousPosition[0] != i && previousPosition[1] != j+1 && Snake[i][j+1] == true){ tail[0]=i;tail[1]=j;}
+                if(Snake[i][j-1] == true && previousPosition[0] != i && previousPosition[1] != j-1 ){ tail[0]=i;tail[1]=j;}
+                if(previousPosition[0] != i+1 && previousPosition[1] != j && Snake[i+1][j] == true){ tail[0]=i;tail[1]=j;}
+
+
+        }
+        if(i == 0 && j == Snake.length){
+            RecursiveChecks++;
+
+                if(Snake[i][j-1] == true && previousPosition[0] != i && previousPosition[1] != j-1){ tail[0]=i;tail[1]=j;}
+                if(previousPosition[0] != i+1 && previousPosition[1] != j && Snake[i+1][j] == true){ tail[0]=i;tail[1]=j;}
+
+        }
+        if(i != 0 && j== 0 && i != Snake.length){
+            RecursiveChecks++;
+            RecursiveChecks++;
+
+                if(previousPosition[0] != i+1 && previousPosition[1] != j && Snake[i+1][j] == true){ tail[0]=i;tail[1]=j;}
+                if(Snake[i-1][j] == true && previousPosition[0] != i-1 && previousPosition[1] != j){ tail[0]=i;tail[1]=j;}
+                if(previousPosition[0] != i && previousPosition[1] != j+1 && Snake[i][j+1] == true){ tail[0]=i;tail[1]=j;}
+
+        }
+        if(i == Snake.length && j ==0){
+            RecursiveChecks++;
+
+                if(previousPosition[0] != i && previousPosition[1] != j+1 && Snake[i][j+1] == true){ tail[0]=i;tail[1]=j;}
+                if(Snake[i-1][j] == true && previousPosition[0] != i-1 && previousPosition[1] != j){ tail[0]=i;tail[1]=j;}
+
+        }
+        if(i == Snake.length && j !=0 && j!= Snake.length){
+            RecursiveChecks++;
+            RecursiveChecks++;
+
+                if(previousPosition[0] != i && previousPosition[1] != j+1 && Snake[i][j+1] == true){ tail[0]=i;tail[1]=j;}
+                if(Snake[i][j-1] == true && previousPosition[0] != i && previousPosition[1] != j-1){ tail[0]=i;tail[1]=j;}
+                if(previousPosition[0] != i-1 && previousPosition[1] != j && Snake[i-1][j] == true){ tail[0]=i;tail[1]=j;}
+
+        }
+        if(i == Snake.length && j== Snake.length){
+            RecursiveChecks++;
+
+                if(previousPosition[0] != i-1 && previousPosition[1] != j && Snake[i-1][j] == true){ tail[0]=i;tail[1]=j;}
+                if(Snake[i][j-1] == true && previousPosition[0] != i && previousPosition[1] != j-1){ tail[0]=i;tail[1]=j;}
+
+        }
+        if(i != 0 && j == Snake.length && i != Snake.length){
+            RecursiveChecks++;
+            RecursiveChecks++;
+
+                if(previousPosition[0] != i-1 && previousPosition[1] != j && Snake[i-1][j] == true){ tail[0]=i;tail[1]=j;}
+                if(Snake[i+1][j] == true && previousPosition[0] != i+1 && previousPosition[1] != j){ tail[0]=i;tail[1]=j;}
+                if(previousPosition[0] != i && previousPosition[1] != j-1 && Snake[i][j-1] == true){ tail[0]=i;tail[1]=j;}
+
+        }if(i != 0 && j != 0 && i != Snake.length && j!=Snake.length){
+            RecursiveChecks++;
+            RecursiveChecks++;
+            RecursiveChecks++;
+
+                if(Snake[i][j+1] == false && Snake[i][j-1] == false && Snake[i+1][j] == false && Snake[i-1][j] == true){ tail[0]=i;tail[1]=j;}
+                if(Snake[i][j+1] == true && Snake[i][j-1] == false && Snake[i+1][j] == false && Snake[i-1][j] == false){ tail[0]=i;tail[1]=j;}
+                if(Snake[i][j+1] == false && Snake[i][j-1] == true && Snake[i+1][j] == false && Snake[i-1][j] == false){ tail[0]=i;tail[1]=j;}
+                if(Snake[i][j+1] == false && Snake[i][j-1] == false && Snake[i+1][j] == true && Snake[i-1][j] == false){ tail[0]=i;tail[1]=j;}
+        }
     }
 }

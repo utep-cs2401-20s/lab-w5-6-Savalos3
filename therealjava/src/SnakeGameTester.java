@@ -16,7 +16,6 @@ public class SnakeGameTester {
         int i = 1;
         int j = 1;
         int[] B = {2, 2, 3};
-       // int[] C = {2, 2, 8};
         SnakeGame test = new SnakeGame(A, i, j);
 
         assertArrayEquals(B, test.findTailExhaustive());
