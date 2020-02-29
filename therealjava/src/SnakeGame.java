@@ -2,7 +2,6 @@ public class SnakeGame {
 
     private boolean[][] Snake;
     private int[] HeadPosition;
-    private int[] Helper;
     private static int ExhaustiveChecks;
     private static int RecursiveChecks;
 
@@ -15,7 +14,6 @@ public class SnakeGame {
         Snake = board;
     }
     public SnakeGame(boolean[][] board , int x , int y) {
-        Helper = new int[3];
         HeadPosition = new int[2];
         HeadPosition[0] = x;
         HeadPosition[1] = y;
@@ -30,8 +28,6 @@ public class SnakeGame {
 
     private void setHeadPosition(int[] HeadPosition) { this.HeadPosition = HeadPosition; }
 
-    private void setHelper(int[] Helper) { this.Helper = HeadPosition; }
-
     private void setExhaustiveChecks(int ExhaustiveChecks) { this.ExhaustiveChecks = ExhaustiveChecks; }
 
     private void setRecursiveChecks(int RecursiveChecks) { this.RecursiveChecks = RecursiveChecks; }
@@ -39,8 +35,6 @@ public class SnakeGame {
     private boolean[][] getSnake() { return Snake; }
 
     private int[] getHeadPosition() { return HeadPosition; }
-
-    private int[] getHelper() { return Helper; }
 
     public static int getExhaustiveChecks() { return ExhaustiveChecks; }
 
@@ -159,7 +153,6 @@ public class SnakeGame {
         resetCounters();
         RecursiveChecks++;}
         int[] tail = new int[3];
-        int[] tailFinal = new int[3];
         int length = 0;
         int i = currentPosition[0];
         int j = currentPosition[1];
@@ -289,10 +282,7 @@ public class SnakeGame {
 
                     tail[0]=i;tail[1]=j; currentPosition[0]= i; currentPosition[1]= j+1;
                     System.out.println("tail: " + tail[0]+ "" + tail[1] + "" +tail[2]);
-                  findTailRecursive1(currentPosition,tail);
-                    if(helper1(currentPosition)== true){
-                        helper2(currentPosition);
-                    }
+                   findTailRecursive1(currentPosition,tail);
                 }
                 if((i != previousPosition[0] || j-1 != previousPosition[1]) && Snake[i][j-1] == true){
                     System.out.println("left");
@@ -303,94 +293,8 @@ public class SnakeGame {
         }
         System.out.println("tail: " + tail[0]+ "" + tail[1] + "" +tail[2]);
         System.out.println("end");
-        return Helper;
 
-       // return tail;
-    }
-    private int [] helper2(int[] currentPosition){
-        Helper[0] = currentPosition [0];
-        Helper[1] = currentPosition[1];
-        Helper[2] = currentPosition[2];
-    return Helper;
+       return tail;
     }
 
-    private boolean helper1(int[] currentPosition1) {
-       int  i = currentPosition1[0];
-       int  j = currentPosition1[1];
-
-        if(i==0 && j ==0){
-
-            if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){
-                if(Snake[i][j+1] == true && Snake[i+1][j] == false ) return true;}
-            if(Snake[i][j+1] == false && Snake[i+1][j] == true ){ return true;}
-        }
-        if(i==0 && j!= 0 && j!= Snake.length-1){
-
-        if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){
-            if(Snake[i][j-1] == false && Snake[i+1][j] == false && Snake[i][j+1] == true){  return true;}
-            if(Snake[i][j-1] == true && Snake[i+1][j] == false && Snake[i][j+1] == false){ return true;}
-            if(Snake[i][j-1] == false && Snake[i+1][j] == true && Snake[i][j+1] == false){  return true;}
-        }
-
-    }
-        if(i == 0 && j == Snake.length-1){
-
-        if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){
-            if(Snake[i][j-1] == true && Snake[i+1][j] == false){  return true;}
-            if(Snake[i][j-1] == false && Snake[i+1][j] == true){  return true;}
-        }
-    }
-        if(i != 0 && j== 0 && i != Snake.length-1){
-
-        if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){
-            if(Snake[i-1][j] == false && Snake[i][j+1] == false && Snake[i+1][j] == true){  return true;}
-            if(Snake[i-1][j] == true && Snake[i][j+1] == false && Snake[i+1][j] == false){ return true;}
-            if(Snake[i-1][j] == false && Snake[i][j+1] == true && Snake[i+1][j] == false){  return true;}
-        }
-
-    }
-        if(i == Snake.length-1 && j ==0){
-
-        if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){
-            if(Snake[i-1][j] == false && Snake[i][j+1] == true){   return true;}
-            if(Snake[i-1][j] == true && Snake[i][j+1] == false){ return true;}
-        }
-
-    }
-        if(i == Snake.length-1 && j !=0 && j!= Snake.length-1){
-
-        if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){
-            if(Snake[i][j-1] == false && Snake[i-1][j] == false && Snake[i][j+1] == true){  return true;}
-            if(Snake[i][j-1] == true && Snake[i-1][j] == false && Snake[i][j+1] == false){ return true;}
-            if(Snake[i][j-1] == false && Snake[i-1][j] == true && Snake[i][j+1] == false){ return true;}
-        }
-
-    }
-        if(i == Snake.length-1 && j== Snake.length-1){
-
-        if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){
-            if(Snake[i][j-1] == false && Snake[i-1][j] == true){ return true;}
-            if(Snake[i][j-1] == true && Snake[i-1][j] == false){  return true;}
-        }
-
-    }
-        if(i != 0 && j == Snake.length-1 && i != Snake.length-1){
-
-        if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){
-            if(Snake[i+1][j] == false && Snake[i][j-1] == false && Snake[i-1][j] == true){  return true;}
-            if(Snake[i+1][j] == true && Snake[i][j-1] == false && Snake[i-1][j] == false){  return true;}
-            if(Snake[i+1][j] == false && Snake[i][j-1] == true && Snake[i-1][j] == false){   return true;}
-        }
-
-    }if(i != 0 && j != 0 && i != Snake.length-1 && j!=Snake.length-1){
-
-        if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){
-            if(Snake[i][j+1] == false && Snake[i][j-1] == false && Snake[i+1][j] == false && Snake[i-1][j] == true){  return true;}
-            if(Snake[i][j+1] == true && Snake[i][j-1] == false && Snake[i+1][j] == false && Snake[i-1][j] == false){ return true;}
-            if(Snake[i][j+1] == false && Snake[i][j-1] == true && Snake[i+1][j] == false && Snake[i-1][j] == false){  return true;}
-            if(Snake[i][j+1] == false && Snake[i][j-1] == false && Snake[i+1][j] == true && Snake[i-1][j] == false){ return true;}
-        }
-    }
-        return false;
-    }
 }
