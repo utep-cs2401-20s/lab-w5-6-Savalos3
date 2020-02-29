@@ -45,10 +45,10 @@ public class SnakeGame {
         RecursiveChecks = 0;
     }
 
-    public int[] findTailExhaustive(){
+    public int[] findTailExhaustive(){ //Used same concept of game of life to look through neighbors
         resetCounters();
         int[] tail = new int[3];
-        int count = 0;
+        int count = 0; //Used to find checks
         int length = 0;
         for (int i = 0; i < Snake.length; i++) {
            for (int j = 0; j < Snake[i].length; j++) {
@@ -59,7 +59,7 @@ public class SnakeGame {
 
         if(i==0 && j ==0){
             count++;
-            if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){
+            if(Snake[i][j] == true && (i != HeadPosition[0] || j != HeadPosition[1])){//if one of these conditionals is true then the solution was found
             if(Snake[i][j+1] == true && Snake[i+1][j] == false ){ ExhaustiveChecks = count; tail[0]=i;tail[1]=j;}
             if(Snake[i][j+1] == false && Snake[i+1][j] == true ){ ExhaustiveChecks = count; tail[0]=i;tail[1]=j;}
             }
@@ -140,14 +140,14 @@ public class SnakeGame {
         tail[2] = length;
         return tail;
     }
-    public int[] findTailRecursive(){
+    public int[] findTailRecursive(){//Only sends Headposition
         resetCounters();
         int[] tail = new int[3];
         tail = findTailRecursive1(HeadPosition,HeadPosition);
         System.out.println("end1");
         return tail;
     }
-    private int[] findTailRecursive1(int[] currentPosition, int[] previousPosition){
+    private int[] findTailRecursive1(int[] currentPosition, int[] previousPosition){ //Used System.out.print to try to track code.
         System.out.println("findTailRecursive------------------------------------------------------");
         if(currentPosition[0] == previousPosition[0] && currentPosition[1] == previousPosition[1]){
         resetCounters();

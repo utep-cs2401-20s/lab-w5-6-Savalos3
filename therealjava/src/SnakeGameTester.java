@@ -191,12 +191,12 @@ public class SnakeGameTester {
     public void testSGR() { //Could not figure this method out :((
 
         boolean[][] A = {{false, false, false, false},
-                         {false, false, true, false},
-                         {false, false, true, false},
-                         {false, false, true, false}};
+                {false, true, true, false},
+                {false, false, true, false},
+                {false, false, false, false}};
         int i = 1;
-        int j = 2;
-        int[] B = {1, 2, 1};
+        int j = 1;
+        int[] B = {2, 2, 3};
         SnakeGame test = new SnakeGame(A, i, j);
         //test.findTailRecursive();
         //System.out.println(test.getRecursiveChecks());
@@ -224,12 +224,12 @@ public class SnakeGameTester {
     public void testSGR2() {
 
         boolean[][] A = {{false, false, false, false},
-                         {false, false, true, false},
-                         {false, false, true, false},
-                         {false, false, true, false}};
-        int i = 1;
-        int j = 2;
-        int[] B = {0, 0, 1};
+                {false, false, false, false},
+                {false, true, false, false},
+                {false, true, true, true}};
+        int i = 3;
+        int j = 3;
+        int[] B = {2, 1, 4};
         SnakeGame test = new SnakeGame(A, i, j);
         //test.findTailRecursive();
         //System.out.println(test.getRecursiveChecks());
@@ -239,13 +239,13 @@ public class SnakeGameTester {
     @Test
     public void testSGR3() {
 
-        boolean[][] A = {{false, false, false, false},
-                         {false, false, true, false},
-                         {false, false, true, false},
-                         {false, false, true, false}};
-        int i = 1;
-        int j = 2;
-        int[] B = {0, 0, 1};
+        boolean[][] A = {{false, true, false, false},
+                {false, true, true, false},
+                {false, false, true, false},
+                {false, false, true, true}};
+        int i = 0;
+        int j = 1;
+        int[] B = {3, 3, 6};
         SnakeGame test = new SnakeGame(A, i, j);
         //test.findTailRecursive();
         //System.out.println(test.getRecursiveChecks());
@@ -255,13 +255,13 @@ public class SnakeGameTester {
     @Test
     public void testSGR4() {
 
-        boolean[][] A = {{false, false, false, false},
-                         {false, false, true, false},
-                         {false, false, true, false},
-                         {false, false, true, false}};
-        int i = 1;
-        int j = 2;
-        int[] B = {0, 0, 1};
+        boolean[][] A = {{false, false, true, false},
+                {false, false, true, false},
+                {false, false, true, false},
+                {false, false, false, false}};
+        int i = 0;
+        int j = 1;
+        int[] B = {2, 2, 3};
         SnakeGame test = new SnakeGame(A, i, j);
         //test.findTailRecursive();
         //System.out.println(test.getRecursiveChecks());
@@ -271,13 +271,13 @@ public class SnakeGameTester {
     @Test
     public void testSGR5() {
 
-        boolean[][] A = {{false, false, false, false},
-                         {false, false, true, false},
-                         {false, false, true, false},
-                         {false, false, true, false}};
-        int i = 1;
-        int j = 2;
-        int[] B = {0, 0, 1};
+        boolean[][] A = {{true, true, true, true},
+                {false, false, false, true},
+                {true, false, false, true},
+                {true, true, true, true}};
+        int i = 0;
+        int j = 0;
+        int[] B = {2, 0, 11};
         SnakeGame test = new SnakeGame(A, i, j);
         //test.findTailRecursive();
         //System.out.println(test.getRecursiveChecks());
@@ -288,11 +288,11 @@ public class SnakeGameTester {
     public void testSGR6() {
 
         boolean[][] A = {{false, false, false, false},
-                         {false, false, true, false},
-                         {false, false, true, false},
-                         {false, false, true, false}};
+                {false, true, false, false},
+                {false, false, false, false},
+                {false, false, false, false}};
         int i = 1;
-        int j = 2;
+        int j = 1;
         int[] B = {0, 0, 1};
         SnakeGame test = new SnakeGame(A, i, j);
         //test.findTailRecursive();
@@ -303,13 +303,16 @@ public class SnakeGameTester {
     @Test
     public void testSGR7() {
 
-        boolean[][] A = {{false, false, false, false},
-                         {false, false, true, false},
-                         {false, false, true, false},
-                         {false, false, true, false}};
-        int i = 1;
-        int j = 2;
-        int[] B = {0, 0, 1};
+        boolean[][] A = {{true, true, true, true,true, true, true},
+                {false, false, false, false, false, false, true},
+                {true, true, true, true, true, false, true},
+                {true, false, false, false, true, false, true},
+                {true, false, true, true, true, false, true},
+                {true, false, false, false, false, false, true},
+                {true, true, true, true, true, true, true}};
+        int i = 0;
+        int j = 0;
+        int[] B = {4, 2, 31};
         SnakeGame test = new SnakeGame(A, i, j);
         //test.findTailRecursive();
         //System.out.println(test.getRecursiveChecks());
@@ -319,12 +322,15 @@ public class SnakeGameTester {
     @Test
     public void testSGR8() {
 
-        boolean[][] A = {{false, false, false, false},
-                         {false, false, true, false},
-                         {false, false, true, false},
-                         {false, false, true, false}};
-        int i = 1;
-        int j = 2;
+        boolean[][] A = {{false, false, false, false,false, false, false},
+                {false, false, false, false, false, false, false},
+                {false, false, false, false, false, false, false},
+                {false, false, false, true, false, false, false},
+                {false, false, false, false, false, false, false},
+                {false, false, false, false, false, false, false},
+                {false, false, false, false, false, false, false}};
+        int i = 3;
+        int j = 3;
         int[] B = {0, 0, 1};
         SnakeGame test = new SnakeGame(A, i, j);
         //test.findTailRecursive();
@@ -335,13 +341,16 @@ public class SnakeGameTester {
     @Test
     public void testSGR9() {
 
-        boolean[][] A = {{false, false, false, false},
-                         {false, false, true, false},
-                         {false, false, true, false},
-                         {false, false, true, false}};
-        int i = 1;
-        int j = 2;
-        int[] B = {0, 0, 1};
+        boolean[][] A = {{true, false, false, false,false, false, false},
+                {false, true, true, false, false, false, false},
+                {false, false, true, true, false, false, false},
+                {false, false, false, false, true, false, false},
+                {false, false, false, false, true, true, false},
+                {false, false, false, false, false, true, false},
+                {false, false, false, false, false, true, true}};
+        int i = 0;
+        int j = 0;
+        int[] B = {6, 6, 11};
         SnakeGame test = new SnakeGame(A, i, j);
         //test.findTailRecursive();
         //System.out.println(test.getRecursiveChecks());
